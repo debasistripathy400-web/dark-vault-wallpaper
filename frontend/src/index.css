@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Pirata+One&family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg-primary: #050508;
+  --bg-secondary: #0c0c14;
+  
+  --neon-purple: #7b2cbf; /* Deeper Purple */
+  --neon-blue: #3c096c;   /* Gothic Deep Purple */
+  --neon-cyan: #d00000;   /* Gothic Crimson Red */
+  --accent-crimson: #9d0208;
+  
+  --glass-bg: rgba(12, 12, 20, 0.7);
+  --glass-border: rgba(208, 0, 0, 0.15);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+  
+  --text-primary: #e0e0e0;
+  --text-secondary: #8a8a8a;
+  
+  --font-gothic: 'Pirata One', cursive;
+  --font-mysterious: 'Cinzel', serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(157, 2, 8, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(60, 9, 108, 0.15), transparent 25%),
+    radial-gradient(circle at 50% 80%, rgba(123, 44, 191, 0.1), transparent 20%);
+  background-attachment: fixed;
+}
+
+/* Typography Overrides */
+h1, h2, h3, .navbar-logo h2 {
+  font-family: var(--font-mysterious);
+  letter-spacing: 2px;
+}
+
+.text-gothic {
+  font-family: var(--font-gothic);
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(208, 0, 0, 0.4);
+  box-shadow: 0 15px 35px 0 rgba(157, 2, 8, 0.3);
+}
+
+/* Typography Gradient */
+.text-gradient {
+  background: linear-gradient(90deg, #d00000, #9d0208, #3c096c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a2e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-crimson);
+}
+
+/* Glowing Button */
+.btn-glow {
+  background: linear-gradient(90deg, var(--bg-secondary), var(--accent-crimson));
+  color: white;
+  border: 1px solid var(--accent-crimson);
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  font-family: var(--font-mysterious);
+  letter-spacing: 1px;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(208, 0, 0, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.btn-glow:hover::before {
+  left: 100%;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 20px var(--accent-crimson);
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, var(--accent-crimson), #6a040f);
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Form inputs glassmorphism */
+.glass-input {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.glass-input:focus {
+  border-color: var(--accent-crimson);
+  box-shadow: 0 0 10px rgba(157, 2, 8, 0.4);
+}
+
+/* Fullscreen Styles */
+#wallpaper-preview-container:fullscreen {
+  background-color: #000;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+}
+
+#wallpaper-preview-container:fullscreen img {
+  max-height: 100vh !important;
+  max-width: 100vw !important;
+  object-fit: contain;
+}
+
+#wallpaper-preview-container:fullscreen button {
+  display: none;
+}

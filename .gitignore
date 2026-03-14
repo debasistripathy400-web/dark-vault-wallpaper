@@ -1,0 +1,30 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environments
+venv/
+.env
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+
+# Node
+node_modules/
+dist/
+build/
+.eslintcache
+
+# Local dev
+.vscode/
+.idea/
+*.log
+
+# Artifacts/Tools
+.gemini/
+.agents/
