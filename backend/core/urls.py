@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from django.shortcuts import redirect
 
 def redirect_to_frontend(request):
-    return redirect('http://localhost:5173/')
+    return redirect('/')
 
 urlpatterns = [
     path('', redirect_to_frontend),
