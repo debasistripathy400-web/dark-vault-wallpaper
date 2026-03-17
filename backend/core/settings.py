@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
-# Use dj-database-url to parse the DATABASE_URL environment variable
+# Use dj-database-url to parse the DATABASE_URL environment variable from Aiven/Vercel
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 if DATABASE_URL:
@@ -83,12 +83,9 @@ if DATABASE_URL:
         )
     }
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+    # Fail loudly if cloud database is not configured
+    DATABASES = {}
+    print("WARNING: DATABASE_URL not found. Cloud database is required.")
 
 
 # Password validation
