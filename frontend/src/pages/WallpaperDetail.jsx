@@ -40,30 +40,43 @@ const WallpaperDetail = () => {
     }, [id]);
 
     const handleDownload = async () => {
+        const formattedUrl = formatImageUrl(wallpaper.image);
         try {
             // First, record the download in the backend
             await axiosInstance.post(`/wallpapers/${id}/download/`);
             
-            // Re-fetch the wallpaper image as a blob to ensure the browser saves it
-            const response = await fetch(wallpaper.image);
+            // Try to fetch as blob for "proper" download
+            const response = await fetch(formattedUrl);
+            if (!response.ok) throw new Error('Network response was not ok');
+            
             const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
+            const blobUrl = window.URL.createObjectURL(blob);
             
             const link = document.createElement('a');
-            link.href = url;
+            link.href = blobUrl;
             link.setAttribute('download', `${wallpaper.title.replace(/\s+/g, '_')}_DarkVault.jpg`);
             document.body.appendChild(link);
             link.click();
             
             // Cleanup
             document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
+            window.URL.revokeObjectURL(blobUrl);
 
             // Optimistically update the UI count
             setWallpaper(prev => ({ ...prev, downloads: (prev.downloads || 0) + 1 }));
         } catch (error) {
-            console.error("Download failed", error);
-            alert("Download failed. Please try again.");
+            console.warn("Blob download failed, falling back to direct link:", error);
+            // Fallback: Open in new tab or direct download if server supports it
+            const link = document.createElement('a');
+            link.href = formattedUrl;
+            link.target = '_blank';
+            link.setAttribute('download', `${wallpaper.title.replace(/\s+/g, '_')}_DarkVault.jpg`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Still update the count
+            setWallpaper(prev => ({ ...prev, downloads: (prev.downloads || 0) + 1 }));
         }
     };
 
