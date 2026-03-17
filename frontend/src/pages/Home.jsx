@@ -128,9 +128,9 @@ const Home = () => {
         </div>
 
         <div className="wallpaper-grid">
-           {trending.length > 0 ? trending.map(wp => (
-             <Link key={wp.id} to={`/wallpaper/${wp.id}`} className="wallpaper-card glass-card" style={{textDecoration: 'none', color: 'inherit'}}>
-               <img src={wp.image} alt={wp.title} className="wallpaper-img-placeholder" style={{objectFit: 'cover'}} />
+            {trending.length > 0 ? trending.map(wp => (
+              <Link key={wp.id} to={`/wallpaper/${wp.id}`} className="wallpaper-card glass-card" style={{textDecoration: 'none', color: 'inherit'}}>
+                <img src={formatImageUrl(wp.image)} alt={wp.title} className="wallpaper-img-placeholder" style={{objectFit: 'cover'}} />
                <div className="wallpaper-info">
                   <h4>{wp.title}</h4>
                   <span>{wp.resolution} • {wp.category_details?.name}</span>
