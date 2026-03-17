@@ -83,9 +83,14 @@ if DATABASE_URL:
         )
     }
 else:
-    # Fail loudly if cloud database is not configured
-    DATABASES = {}
-    print("WARNING: DATABASE_URL not found. Cloud database is required.")
+    # Fallback to local SQLite if cloud database is not configured
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+    print("NOTE: DATABASE_URL not found. Using local SQLite.")
 
 
 # Password validation
