@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import axiosInstance from '../api/axios';
 import { Search as SearchIcon, SlidersHorizontal } from 'lucide-react';
+import { formatImageUrl } from '../utils/formatUrl';
 import '../index.css';
 
 const SearchPage = () => {
@@ -40,7 +41,7 @@ const SearchPage = () => {
                 <div className="wallpaper-grid">
                     {wallpapers.length > 0 ? wallpapers.map(wp => (
                         <Link key={wp.id} to={`/wallpaper/${wp.id}`} className="wallpaper-card glass-card" style={{textDecoration: 'none', color: 'inherit'}}>
-                            <img src={wp.image} alt={wp.title} className="wallpaper-img-placeholder" style={{objectFit: 'cover'}} />
+                            <img src={formatImageUrl(wp.image)} alt={wp.title} className="wallpaper-img-placeholder" style={{objectFit: 'cover'}} />
                             <div className="wallpaper-info">
                                 <h4>{wp.title}</h4>
                                 <span>{wp.resolution} • {wp.category_details?.name}</span>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axiosInstance from '../api/axios';
 import { Download, Heart, Share2, Expand, Maximize, Eye } from 'lucide-react';
+import { formatImageUrl } from '../utils/formatUrl';
 import '../index.css';
 
 const WallpaperDetail = () => {
@@ -146,7 +147,7 @@ const WallpaperDetail = () => {
                     }}
                 >
                     <img 
-                        src={wallpaper.image.startsWith('http') ? wallpaper.image : `${(import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api/').replace(/\/api\/?$/, '')}${wallpaper.image}`} 
+                        src={formatImageUrl(wallpaper.image)} 
                         alt={wallpaper.title} 
                         style={{maxWidth: '100%', maxHeight: '75vh', objectFit: 'contain'}} 
                     />

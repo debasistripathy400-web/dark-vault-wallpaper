@@ -4,6 +4,7 @@ import { Stars, Float } from '@react-three/drei';
 import { Search, ArrowRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../api/axios';
+import { formatImageUrl } from '../utils/formatUrl';
 import './Home.css';
 
 const AnimatedShape = ({ position, color, type }) => {
@@ -180,7 +181,7 @@ const Home = () => {
                 <div style={{
                   position: 'absolute',
                   top: 0, left: 0, width: '100%', height: '100%',
-                  backgroundImage: `url(${cat.cover_image.startsWith('http') ? cat.cover_image : `${(import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api/').replace(/\/api\/?$/, '')}${cat.cover_image}`})`,
+                  backgroundImage: `url(${formatImageUrl(cat.cover_image)})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   opacity: 0.6,

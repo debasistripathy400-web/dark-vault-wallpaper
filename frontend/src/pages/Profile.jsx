@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import axiosInstance from '../api/axios';
 import { Camera, Save, Download as DownloadIcon, Heart, Clock } from 'lucide-react';
+import { formatImageUrl } from '../utils/formatUrl';
 import '../index.css';
 
 const Profile = () => {
