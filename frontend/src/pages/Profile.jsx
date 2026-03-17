@@ -159,7 +159,7 @@ const Profile = () => {
                                 <div className="glass-card" style={{padding: '20px', marginBottom: '20px', border: '1px solid var(--neon-purple)'}}>
                                     <h4 style={{color: 'var(--neon-purple)', marginBottom: '10px'}}>Admin Control</h4>
                                     <p style={{fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '15px'}}>Access the core database to manage categories, users, and wallpapers.</p>
-                                    <a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener noreferrer" className="btn-glow" style={{padding: '10px 20px', fontSize: '0.9rem', display: 'inline-block', textDecoration: 'none'}}>
+                                    <a href={`${(import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api/').replace(/\/api\/?$/, '')}/admin/`} target="_blank" rel="noopener noreferrer" className="btn-glow" style={{padding: '10px 20px', fontSize: '0.9rem', display: 'inline-block', textDecoration: 'none'}}>
                                         Go to Admin Panel
                                     </a>
                                 </div>
