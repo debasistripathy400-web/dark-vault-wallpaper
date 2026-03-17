@@ -134,7 +134,28 @@ const WallpaperDetail = () => {
                         >
                             <Heart size={24} fill={isFavorited ? "var(--neon-cyan)" : "none"} />
                         </button>
-                        <button className="glass-card" style={{padding: '12px', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <button 
+                            className="glass-card" 
+                            style={{padding: '12px', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease'}}
+                            onClick={async () => {
+                                const shareData = {
+                                    title: `DarkVault - ${wallpaper.title}`,
+                                    text: `Check out this amazing 4K wallpaper on DarkVault: ${wallpaper.title}`,
+                                    url: window.location.href,
+                                };
+                                try {
+                                    if (navigator.share) {
+                                        await navigator.share(shareData);
+                                    } else {
+                                        await navigator.clipboard.writeText(window.location.href);
+                                        alert("Link copied to clipboard!");
+                                    }
+                                } catch (err) {
+                                    console.error("Share failed", err);
+                                }
+                            }}
+                            title="Share Wallpaper"
+                        >
                             <Share2 size={24} />
                         </button>
                         <button className="btn-glow" onClick={handleDownload} style={{display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.1rem'}}>

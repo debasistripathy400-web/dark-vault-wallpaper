@@ -34,9 +34,30 @@ const Footer = () => {
             <a href="https://www.linkedin.com/in/debasis-tripathy-4709b4323/" target="_blank" rel="noopener noreferrer" style={{color: 'inherit'}}>
               <Linkedin size={20} color="var(--text-secondary)" style={{cursor: 'pointer'}} />
             </a>
-            <a href="https://github.com/debasistripathy400-web" target="_blank" rel="noopener noreferrer" style={{color: 'inherit'}}>
-              <Github size={20} color="var(--text-secondary)" style={{cursor: 'pointer'}} />
+            <a href="https://github.com/debasistripathy400-web/dark-vault-wallpaper" target="_blank" rel="noopener noreferrer" style={{color: 'inherit'}} title="Share Project Code">
+              <Github size={20} color="var(--neon-cyan)" style={{cursor: 'pointer'}} />
             </a>
+            <button 
+              onClick={() => {
+                navigator.clipboard.writeText("https://github.com/debasistripathy400-web/dark-vault-wallpaper");
+                alert("Project repository link copied to clipboard! Thanks for sharing the code.");
+              }}
+              className="glass-panel"
+              style={{
+                background: 'transparent',
+                border: '1px solid var(--glass-border)',
+                color: 'var(--text-secondary)',
+                padding: '4px 10px',
+                borderRadius: '10px',
+                fontSize: '0.7rem',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px'
+              }}
+            >
+              Share Code
+            </button>
           </div>
         </div>
 
