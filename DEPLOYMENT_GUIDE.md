@@ -42,7 +42,21 @@ Vercel functions are stateless and read-only. You **cannot** use `db.sqlite3` fo
 2. Add the `DATABASE_URL` environment variable.
 3. The `build.sh` script in the `backend/` directory will automatically run migrations during the build process.
 
-## 5. Steps to Deploy
+## 5. Media Files (Important)
+
+Vercel's serverless functions are **ephemeral** and **read-only**. 
+- **The Issue**: Any images uploaded via the Django admin panel on Vercel will eventually disappear or fail to save.
+- **The Solution**: For a permanent production site, you should integrate a cloud storage service like **Cloudinary**, **AWS S3**, or **Google Cloud Storage**. 
+- **Current State**: The existing "seed" wallpapers will work, but new uploads won't persist on Vercel's free tier.
+
+## 6. Manual Database Migration (Alternative)
+
+If you have issues with automatic migrations during build:
+1. Update your local `.env` with the Aiven `DATABASE_URL`.
+2. Run locally: `cd backend && python manage.py migrate`
+3. Then push your code to Vercel.
+
+## 7. Steps to Deploy
 
 1. Import your repository into Vercel.
 2. In the **Project Settings**:

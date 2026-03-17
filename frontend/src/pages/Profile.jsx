@@ -175,7 +175,7 @@ const Profile = () => {
                                 downloads.length > 0 ? downloads.map(item => (
                                     <Link key={item.id} to={`/wallpaper/${item.wallpaper_details.id}`} className="glass-card" style={{textDecoration: 'none', color: 'inherit', overflow: 'hidden'}}>
                                         <div style={{height: '160px', overflow: 'hidden'}}>
-                                            <img src={item.wallpaper_details.image} alt="" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                                            <img src={item.wallpaper_details.image.startsWith('http') ? item.wallpaper_details.image : `${(import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api/').replace(/\/api\/?$/, '')}${item.wallpaper_details.image}`} alt="" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
                                         </div>
                                         <div style={{padding: '15px'}}>
                                             <h4 style={{marginBottom: '5px'}}>{item.wallpaper_details.title}</h4>
@@ -195,7 +195,7 @@ const Profile = () => {
                                 favorites.length > 0 ? favorites.map(item => (
                                     <Link key={item.id} to={`/wallpaper/${item.wallpaper_details.id}`} className="glass-card" style={{textDecoration: 'none', color: 'inherit', overflow: 'hidden'}}>
                                         <div style={{height: '160px', overflow: 'hidden'}}>
-                                            <img src={item.wallpaper_details.image} alt="" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                                            <img src={item.wallpaper_details.image.startsWith('http') ? item.wallpaper_details.image : `${(import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api/').replace(/\/api\/?$/, '')}${item.wallpaper_details.image}`} alt="" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
                                         </div>
                                         <div style={{padding: '15px'}}>
                                             <h4 style={{marginBottom: '5px'}}>{item.wallpaper_details.title}</h4>

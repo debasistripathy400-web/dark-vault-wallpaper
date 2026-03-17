@@ -146,7 +146,7 @@ const WallpaperDetail = () => {
                     }}
                 >
                     <img 
-                        src={wallpaper.image} 
+                        src={wallpaper.image.startsWith('http') ? wallpaper.image : `${(import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api/').replace(/\/api\/?$/, '')}${wallpaper.image}`} 
                         alt={wallpaper.title} 
                         style={{maxWidth: '100%', maxHeight: '75vh', objectFit: 'contain'}} 
                     />

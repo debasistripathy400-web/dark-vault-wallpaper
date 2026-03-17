@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend/core/wsgi.py",
+      "src": "backend/vercel_app.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
     },
@@ -15,19 +15,19 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/core/wsgi.py"
+      "dest": "backend/vercel_app.py"
     },
     {
       "src": "/admin/(.*)",
-      "dest": "backend/core/wsgi.py"
+      "dest": "backend/vercel_app.py"
     },
     {
       "src": "/static/(.*)",
-      "dest": "backend/core/wsgi.py"
+      "dest": "backend/vercel_app.py"
     },
     {
       "src": "/media/(.*)",
-      "dest": "backend/core/wsgi.py"
+      "dest": "backend/vercel_app.py"
     },
     {
       "handle": "filesystem"
